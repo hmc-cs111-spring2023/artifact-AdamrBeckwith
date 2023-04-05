@@ -41,23 +41,17 @@ Syntax for a valid MyRoller roll: (PS I need to think of a better name):
 ```
 *
 *          roll ::= "roll" name "{" rollEquation "}"
-*  rollEquation ::= rollEquation "+" rollEquation 
-*                   | 
+*  rollEquation ::= rollAddition
+*                   | (rollEquation)
+*                   | value
+*  rollAddition ::= rollEquation "+" rollEquation 
 *         value :: dice | num 
 *          dice ::= num "d" num
 *           num ::= digit{digit}
 *          name ::= string{string}
 ```
+Most importantly this is only one implementation of something like addition. "RollEquation" would eventually have to be expanded to cover things like filtering and if statements :0 which is significantly differently. The question then is *how can I implement if statements so they are fundementally different then me just implementing this as a internal language and using what already exists. 
 
-```
- *
- *          rule ::= state pattern "->" direction state
- *       pattern ::= ndirection edirection wdirection sdirection
- *    ndirection ::= "N" | odirection
- *    edirection ::= "E" | odirection
- *    wdirection ::= "N" | odirection
- *    sdirection ::= "S" | odirection
- *    odirection ::= "*" | "x"
- *     direction ::= "N" | "E" | "W" | "S" | "x"
- *         state ::= digit{digit}
-```
+Very important issue here a roll evaluates to a function, rather then a direct thing. So lazyness may be required here. 
+In short  `roll "damage" { 1d6 + 5 }` evaluates to  `damage(): 1*rand(1,6) + 5 ` rather a specific roll result. 
+

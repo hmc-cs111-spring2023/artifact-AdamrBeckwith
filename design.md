@@ -39,7 +39,6 @@ Now lets convert this to a valid rule system that we can convert to a full syste
 
 Syntax for a valid MyRoller roll: (PS I need to think of a better name): 
 ```
-*
 *          roll ::= "roll" name "{" rollEquation "}"
 *  rollEquation ::= rollAddition
 *                   | (rollEquation)
@@ -54,4 +53,14 @@ Most importantly this is only one implementation of something like addition. "Ro
 
 Very important issue here a roll evaluates to a function, rather then a direct thing. So lazyness may be required here. 
 In short  `roll "damage" { 1d6 + 5 }` evaluates to  `damage(): 1*rand(1,6) + 5 ` rather a specific roll result. 
+
+We will come back to checks, but it would be good to have stat implemented in some capacity to help with testing. Its pretty simple its just 
+```
+*          stat ::= "stat" name parameter
+*     parameter ::= rollAddition
+*                     ...
+*                   | numberRolls
+*   numberRolls ::=  digit{digit}
+                    etc
+```
 

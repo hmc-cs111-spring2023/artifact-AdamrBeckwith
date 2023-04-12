@@ -56,7 +56,7 @@ In short  `roll "damage" { 1d6 + 5 }` evaluates to  `damage(): 1*rand(1,6) + 5 `
 
 We will come back to checks, but it would be good to have stat implemented in some capacity to help with testing. Its pretty simple its just 
 ```
-*          stat ::= "stat" name parameter
+*          graph ::= "graph" name parameter
 *     parameter ::= rollAddition
 *                     ...
 *                   | numberRolls

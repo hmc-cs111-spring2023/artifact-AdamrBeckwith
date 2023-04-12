@@ -1,8 +1,5 @@
-package myRoller.external
 
 import scala.util.parsing.combinator._
-
-import picolib.semantics._
 
 /*
  * Syntax for a valid Picobot rule:
@@ -19,13 +16,15 @@ import picolib.semantics._
  *
  */
 
-object MyRollerParser extends RegexParsers {
+object rollMakerParser extends RegexParsers {
 
   // for parsing comments
   override protected val whiteSpace = """(\s|#.*)+""".r
 
   // parsing interface
   def apply(s: String): ParseResult[List[Rule]] = parseAll(program, s)
+
+  def program: Parser[List[Rule]] = rule *
 
   
 }

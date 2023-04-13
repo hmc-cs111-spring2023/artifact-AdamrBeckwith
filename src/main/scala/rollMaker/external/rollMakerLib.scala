@@ -3,8 +3,24 @@ package rollMakerLib
 import scala.util.Random
 
 
-class RollMakerLib :
+class RollMakerLib 
+
+    case class Die(size: Int){
+        def roll() : int = {
+            val rand = new Random
+            rand.nextInt
+        }
+    }
     
+    case class Roll(name: String, number: Int, die: Die) {
+        def evaluate(roll: Roll) = {
+            for(i <- 1 to roll.number) {
+                print(roll.die.roll())
+            }
+        }
+    }
+
+
     // def rand = new Random()
 
     // class Roll() =
@@ -26,5 +42,4 @@ class RollMakerLib :
     //         }
     //     }
 
-end RollMakerLib  
 

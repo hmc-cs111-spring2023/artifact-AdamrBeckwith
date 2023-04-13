@@ -5,16 +5,16 @@ import scala.util.Random
 
 class RollMakerLib 
 
-    case class Die(size: Int){
+    case class Dice(number: Int, size: Int){
         def roll() : int = {
             val rand = new Random
             rand.nextInt
         }
     }
     
-    case class Roll(name: String, number: Int, die: Die) {
+    case class Roll(name: String, die: Die) {
         def evaluate(roll: Roll) = {
-            for(i <- 1 to roll.number) {
+            for(i <- 1 to roll.die.number) {
                 print(roll.die.roll())
             }
         }

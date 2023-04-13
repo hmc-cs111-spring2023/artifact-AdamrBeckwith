@@ -1,18 +1,12 @@
 
 import scala.util.parsing.combinator._
 
+import RollMakerLib
 /*
- * Syntax for a valid Picobot rule:
- *
- *          rule ::= state pattern "->" direction state
- *       pattern ::= ndirection edirection wdirection sdirection
- *    ndirection ::= "N" | odirection
- *    edirection ::= "E" | odirection
- *    wdirection ::= "N" | odirection
- *    sdirection ::= "S" | odirection
- *    odirection ::= "*" | "x"
- *     direction ::= "N" | "E" | "W" | "S" | "x"
- *         state ::= digit{digit}
+*          roll ::= "roll" name "{" dice "}"
+*          dice ::= num "d" num        \\ will need to use parser combinators
+*           num ::= digit{digit}
+*          name ::= string{string}
  *
  */
 
@@ -22,9 +16,17 @@ object rollMakerParser extends RegexParsers {
   override protected val whiteSpace = """(\s|#.*)+""".r
 
   // parsing interface
-  def apply(s: String): ParseResult[List[Rule]] = parseAll(program, s)
+  def apply(s: String): ParseResult[List[Roll]] = parseAll(program, s)
 
-  def program: Parser[List[Rule]] = rule *
+  def program: Parser[List[Roll]] = roll *
+
+  def roll: Parser[Roll] =
+    "roll" ~ name ~ "{" ~ dice ~ "}" ^^ {
+      case "roll" ~ name ~ "{" ~ dice ~ "}" =>
+        Roll(name, dice)
+    }
+  
+  def dice: Parser[Dice] =
 
   
 }

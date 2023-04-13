@@ -64,3 +64,12 @@ We will come back to checks, but it would be good to have stat implemented in so
                     etc
 ```
 
+# For Starters 
+I will try to implement the following basic version 
+
+```
+*          roll ::= "roll" name "{" dice "}"
+*          dice ::= num "d" num        \\ will need to use parser combinators
+*           num ::= digit{digit}
+*          name ::= string{string}
+```

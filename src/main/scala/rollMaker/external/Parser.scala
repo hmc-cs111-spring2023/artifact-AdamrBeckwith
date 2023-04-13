@@ -1,7 +1,7 @@
 
 import scala.util.parsing.combinator._
 
-import RollMakerLib
+import rollMakerLib.*
 /*
 *          roll ::= "roll" name "{" dice "}"
 *          dice ::= num "d" num        \\ will need to use parser combinators
@@ -26,7 +26,15 @@ object rollMakerParser extends RegexParsers {
         Roll(name, dice)
     }
   
-  def dice: Parser[Dice] =
+  def dice: Parser[Dice] = 
+    number ~ "d" ~ number ^^ {
+      case int1 ~ "d" ~ int2 => Dice(int1, int2)
+    }
+    
 
+  def name: Parser[String] = 
+    """[a-z]+""".r   ^^ { _.toString }
   
+  def number: Parser[Int] =
+    """(0|[1-9]\d*)""".r ^^ { _.toInt }
 }

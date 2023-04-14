@@ -2,7 +2,7 @@ import Console.{RED, RESET}
 
 // import rollMakerLib.*
 
-import rollMakerParser.
+import rollMaker.external.rollMakerParser
 
 @main
 def main(args: String*) = {

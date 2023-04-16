@@ -7,19 +7,24 @@ import scala.util.Random
 case class Dice(number: Int, size: Int){
     def roll() : Int = {
         val rand = new Random
-        rand.nextInt
+        var result = 0
+        for (i <- 0 to number) {
+            result = result + rand.between(1, size) 
+        }
+        result
     }
 }
 
 case class Roll(name: String, die: Dice) {
-    def evaluate(roll: Roll) = {
+    
+}
+
+def evaluate(roll: Roll) = {
         for(i <- 1 to roll.die.number) {
+            print("Roll Result for " + roll.name + " is ")
             print(roll.die.roll())
         }
     }
-}
-
-
     // def rand = new Random()
 
     // class Roll() =

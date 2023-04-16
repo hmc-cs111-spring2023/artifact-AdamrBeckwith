@@ -1,6 +1,6 @@
 import Console.{RED, RESET}
 
-// import rollMakerLib.*
+import rollMakerLib.*
 
 // import rollMaker.external.rollMakerParser
 
@@ -25,7 +25,11 @@ def main(args: String*) = {
 
     // If parsing succeeded, create the bot and run it
     case rollMakerParser.Success(t, _) => {
-      print("Parse Successful")
+      println("Parse Successful")
+      for (i <- t ) { 
+        evaluate(i) 
+      } 
+      
     }
   }
 }

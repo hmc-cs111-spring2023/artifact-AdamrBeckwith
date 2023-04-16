@@ -32,6 +32,7 @@ object rollMakerParser extends RegexParsers {
     }
     
 
+
   def name: Parser[String] = 
     """[a-z]+""".r   ^^ { _.toString }
   

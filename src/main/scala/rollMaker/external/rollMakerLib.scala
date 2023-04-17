@@ -8,8 +8,9 @@ case class Dice(number: Int, size: Int){
     def roll() : Int = {
         val rand = new Random
         var result = 0
-        for (i <- 0 to number) {
-            result = result + rand.between(1, size) 
+        for (i <- 1 to number) {
+            var midoutput = rand.between(1, size) 
+            result = result + midoutput
         }
         result
     }
@@ -20,10 +21,9 @@ case class Roll(name: String, die: Dice) {
 }
 
 def evaluate(roll: Roll) = {
-        for(i <- 1 to roll.die.number) {
-            print("Roll Result for " + roll.name + " is ")
-            print(roll.die.roll())
-        }
+        print("Roll Result for " + roll.name + " is ")
+        print(roll.die.roll())
+        
     }
     // def rand = new Random()
 

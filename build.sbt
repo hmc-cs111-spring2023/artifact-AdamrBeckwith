@@ -9,6 +9,8 @@ ThisBuild / scalacOptions ++= Seq(
   "-language:postfixOps"
 )
 
+libraryDependencies += "com.github.piotr-kalanski" % "splot" % "0.2.0"
+
 ThisBuild / libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.9" % Test
 ThisBuild / libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.15.4" % Test
 ThisBuild / libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "2.2.0"

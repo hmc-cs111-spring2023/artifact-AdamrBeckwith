@@ -1,3 +1,3 @@
-roll alpha {
+roll main {
     2d6
 }

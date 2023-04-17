@@ -26,9 +26,8 @@ def main(args: String*) = {
     // If parsing succeeded, create the bot and run it
     case rollMakerParser.Success(t, _) => {
       println("Parse Successful")
-      for (i <- t ) { 
-        evaluate(i) 
-      } 
+      evaluate(t)
+    
       
     }
   }

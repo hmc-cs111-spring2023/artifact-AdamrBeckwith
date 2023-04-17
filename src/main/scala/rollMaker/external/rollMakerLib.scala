@@ -20,11 +20,14 @@ case class Roll(name: String, die: Dice) {
     
 }
 
-def evaluate(roll: Roll) = {
-        print("Roll Result for " + roll.name + " is ")
-        print(roll.die.roll())
-        
+def evaluate(t: List[Roll]) = {
+      for (i <- t ) { 
+        print("Roll Result for " + i.name + " is ")
+        print(i.die.roll())
+      }   
     }
+
+
     // def rand = new Random()
 
     // class Roll() =

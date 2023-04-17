@@ -3,6 +3,7 @@ package rollMakerLib
 import scala.util.Random
 
 import com.datawizards.splot.api.implicits._
+import scala.collection.mutable.ListBuffer
 
 // %https://github.com/piotr-kalanski/SPlot%
 
@@ -36,21 +37,23 @@ def evaluate(t: List[Roll]) = {
 
 def statistics(main: Roll) = {
     val sampleSize = 100
-    var results = List.fill(main.die.size*main.die.number)(0)
+    var results = ListBuffer.fill(main.die.size*main.die.number)(0)
     for (i <- 1 to sampleSize) {
         val rollValue = main.die.roll()
-        results.updated(rollValue, results(rollValue) + 1)         
+        results(rollValue) = results(rollValue)  +1    
     }
-    val plotable = Seq(
-    for (i <- 1 to sampleSize) {
-        (i,results(i))
-    })
-    plotable
-        .buildPlot()
-        .titles("Population by country [millions]", "Country", "Population")
-        .size(1200, 300)
-        .legendVisible(false)
-        .display()
+
+    // val plotable = Seq(Int)
+    // for (i <- 1 to sampleSize) {
+    //     plotable = plotable :+ (i,results(i))
+    // }
+    println(results.to(List))
+    // plotable
+    //     .buildPlot()
+    //     .titles("Population by country [millions]", "Country", "Population")
+    //     .size(1200, 300)
+    //     .legendVisible(false)
+    //     .display()
         //.bar(_._1, _._2)
 
 }

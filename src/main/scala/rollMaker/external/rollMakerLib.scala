@@ -43,17 +43,19 @@ def statistics(main: Roll) = {
         results(rollValue) = results(rollValue)  +1    
     }
 
-    // val plotable = ListBuffer[(Int,Int)]
-    // for (i <- 1 to sampleSize) {
-    //     plotable += Seq(i,results(i))
-    // }
-    // plotable
-    //     .buildPlot()
-    //     .titles("Population by country [millions]", "Country", "Population")
-    //     .size(1200, 300)
-    //     .legendVisible(false)
-    //     .display()
-        // .bar(_._1, _._2)
+    val plotable = results.to(List)
+
+    println(" Roll Result | Frequency")
+    var result = 0
+    for (number <- plotable) {
+        val spaceCount = 12 - result.toString().length
+        print(" "*spaceCount)
+        print(result)
+        print(" | ")
+        println("X"*number)
+        result += 1
+    }
+  
 
 }
     // def rand = new Random()

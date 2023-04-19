@@ -36,8 +36,8 @@ def evaluate(t: List[Roll]) = {
     }
 
 def statistics(main: Roll) = {
-    val sampleSize = 100
-    var results = ListBuffer.fill(main.die.size*main.die.number)(0)
+    val sampleSize = 1000
+    var results = ListBuffer.fill(main.die.size*main.die.number+2)(0)
     for (i <- 1 to sampleSize) {
         val rollValue = main.die.roll()
         results(rollValue) = results(rollValue)  +1    
@@ -47,12 +47,15 @@ def statistics(main: Roll) = {
 
     println(" Roll Result | Frequency")
     var result = 0
+    val max = plotable.max
     for (number <- plotable) {
         val spaceCount = 12 - result.toString().length
+        val relativeSize = ((number*30)/max)
+
         print(" "*spaceCount)
         print(result)
         print(" | ")
-        println("X"*number)
+        println("X"*relativeSize)
         result += 1
     }
   

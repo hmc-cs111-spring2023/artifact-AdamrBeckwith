@@ -13,7 +13,7 @@ case class Dice(number: Int, size: Int){
         val rand = new Random
         var result = 0
         for (i <- 1 to number) {
-            var midoutput = rand.between(1, size) 
+            var midoutput = rand.between(1, size+1) 
             result = result + midoutput
         }
         result

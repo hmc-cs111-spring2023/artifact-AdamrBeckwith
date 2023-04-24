@@ -18,6 +18,7 @@ case class Dice(number: Int, size: Int, sides: List[Int]) {
         }
         result
     }
+    def max() : Int = sides.max*number
 }
 
 
@@ -29,12 +30,19 @@ case class Expression(dices: List[Dice], bonus: Int) {
         }
         result + bonus 
     }
+    def max() : Int = { 
+        var max = 0 
+        for (die <- dices) {
+            max = max + die.max()
+        }
+        max + bonus
+    }
 
     def `++`(expr2: Expression): Expression = Expression(dices ++ expr2.dices, bonus + expr2.bonus)
 }
 
-case class Roll(name: String, die: Dice) {
-    
+case class Roll(name: String, die: Expression) {
+
 }
 
 
@@ -51,7 +59,8 @@ def evaluate(t: List[Roll]) = {
 
 def statistics(main: Roll) = {
     val sampleSize = 1000
-    val dierollmax = main.die.sides.max*main.die.number+1
+    val dierollmax = main.die.max()+1
+    print("got this far")
     var results = ListBuffer.fill(dierollmax)(0)
     for (i <- 1 to sampleSize) {
         val rollValue = main.die.roll()

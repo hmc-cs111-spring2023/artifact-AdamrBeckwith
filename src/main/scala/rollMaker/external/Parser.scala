@@ -21,9 +21,9 @@ object rollMakerParser extends RegexParsers {
   def program: Parser[List[Roll]] = roll *
 
   def roll: Parser[Roll] =
-    "roll" ~ name ~ "{" ~ dice ~ "}" ^^ {
-      case _ ~ name ~ _ ~ dice ~ _ =>
-        Roll(name, dice)
+    "roll" ~ name ~ "{" ~ expression ~ "}" ^^ {
+      case _ ~ name ~ _ ~ expression1 ~ _ =>
+        Roll(name, expression1)
     }
   
   def expression: Parser[Expression] = 

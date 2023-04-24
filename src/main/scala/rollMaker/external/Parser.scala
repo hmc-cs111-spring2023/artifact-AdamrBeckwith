@@ -26,11 +26,11 @@ object rollMakerParser extends RegexParsers {
         Roll(name, dice)
     }
   
-  // def expression: Parser[Expression] = 
-  //   dice ^^ {}
-  //   | int ^^ {}
-  //   | dice "+" expression  ^^ {}
-  //   | int "+" expression ^^ {}
+  def expression: Parser[Expression] = 
+    dice ^^ {case dice1 => Expression(List(dice1), 0)}
+    | number ^^ {case int1 => Expression(List(), int1)}
+    | dice ~ "+" ~ expression  ^^ {case dice1 ~ _ ~ expression1 => Expression(List(dice1), 0) ++ expression1}
+    | number ~ "+" ~ expression ^^ {case int1 ~ _ ~ expression1 => Expression(List(), int1) ++ expression1}
   
   def dice: Parser[Dice] = 
     (number ~ "d" ~ number ^^ {

@@ -21,8 +21,16 @@ case class Dice(number: Int, size: Int, sides: List[Int]) {
 }
 
 
-case class Expression(die: Dice) {
-    
+case class Expression(dices: List[Dice], bonus: Int) {
+    def roll() : Int = {
+        var result = 0
+        for (die <- dices) {
+            result = result + die.roll()
+        }
+        result + bonus 
+    }
+
+    def `++`(expr2: Expression): Expression = Expression(dices ++ expr2.dices, bonus + expr2.bonus)
 }
 
 case class Roll(name: String, die: Dice) {

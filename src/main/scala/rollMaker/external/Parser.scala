@@ -31,6 +31,8 @@ object rollMakerParser extends RegexParsers {
     | number ~ "+" ~ expression ^^ {case int1 ~ _ ~ expression1 => Expression(List(), int1) ++ expression1}
     | dice ^^ {case dice1 => Expression(List(dice1), 0)}
     | number ^^ {case int1 => Expression(List(), int1)}
+   
+
   
   def dice: Parser[Dice] = 
     (number ~ "d" ~ number ^^ {
@@ -39,6 +41,16 @@ object rollMakerParser extends RegexParsers {
     | (number ~ "d" ~ listInt ^^ {
       case int1 ~ _ ~ list1 => Dice(int1, list1.size, list1)
     })
+    // | name ^^ {case name1 => {
+    //     for(roll <- program.a) {
+    //       if(name = roll.name) {
+    //         roll.die
+    //         Break
+    //       }
+    //     }
+    //     Error("Roll Name Not Found")
+    //   }
+    // }
     
   def listInt: Parser[List[Int]] =
     ("[" ~ number ~ listInt) ^^ { case _ ~ int1 ~ listInt1 =>  int1 :: listInt1} 

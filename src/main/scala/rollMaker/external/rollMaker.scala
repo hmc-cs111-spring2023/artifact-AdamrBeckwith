@@ -27,8 +27,6 @@ def main(args: String*) = {
     case rollMakerParser.Success(t, _) => {
       println("Parse Successful")
       evaluate(t)
-    
-      
     }
   }
 }

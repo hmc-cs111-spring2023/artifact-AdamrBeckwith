@@ -22,15 +22,28 @@ object rollMakerParser extends RegexParsers {
 
   def roll: Parser[Roll] =
     "roll" ~ name ~ "{" ~ dice ~ "}" ^^ {
-      case "roll" ~ name ~ "{" ~ dice ~ "}" =>
+      case _ ~ name ~ _ ~ dice ~ _ =>
         Roll(name, dice)
     }
   
+  // def expression: Parser[Expression] = 
+  //   dice ^^ {}
+  //   | int ^^ {}
+  //   | dice "+" expression  ^^ {}
+  //   | int "+" expression ^^ {}
+  
   def dice: Parser[Dice] = 
-    number ~ "d" ~ number ^^ {
-      case int1 ~ "d" ~ int2 => Dice(int1, int2, List.range(1,int2+1))
-    }
+    (number ~ "d" ~ number ^^ {
+      case int1 ~ _ ~ int2 => Dice(int1, int2, List.range(1,int2+1))
+    })
+    | (number ~ "d" ~ listInt ^^ {
+      case int1 ~ _ ~ list1 => Dice(int1, list1.size, list1)
+    })
     
+  def listInt: Parser[List[Int]] =
+    ("[" ~ number ~ listInt) ^^ { case _ ~ int1 ~ listInt1 =>  int1 :: listInt1} 
+    | ("," ~ number ~ listInt) ^^ { case _ ~ int1 ~ listInt1 => int1 :: listInt1} 
+    | ("]") ^^ {case _ => List()}
 
 
   def name: Parser[String] = 

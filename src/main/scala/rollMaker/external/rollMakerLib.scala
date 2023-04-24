@@ -48,18 +48,23 @@ def statistics(main: Roll) = {
     val plotable = results.to(List)
 
     println(" Roll Result | Frequency")
+    println("             | ")
+    var firstPrint = false
     var result = 0
     val max = plotable.max
     for (number <- plotable) {
-        val spaceCount = 12 - result.toString().length
-        val relativeSize = ((number*30)/max)
+        if ((number != 0) || firstPrint ) then
+            val spaceCount = 12 - result.toString().length
+            val relativeSize = ((number*30)/max)
 
-        print(" "*spaceCount)
-        print(result)
-        print(" | ")
-        println("X"*relativeSize)
+            print(" "*spaceCount)
+            print(result)
+            print(" | ")
+            println("X"*relativeSize)
+            firstPrint = true
         result += 1
     }
+
   
 
 }

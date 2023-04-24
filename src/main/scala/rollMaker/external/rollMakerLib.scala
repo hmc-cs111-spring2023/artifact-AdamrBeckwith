@@ -8,17 +8,19 @@ import scala.collection.mutable.ListBuffer
 // %https://github.com/piotr-kalanski/SPlot%
 
 // class RollMakerLib 
-case class Dice(number: Int, size: Int){
+case class Dice(number: Int, size: Int, sides: List[Int]) {
     def roll() : Int = {
         val rand = new Random
         var result = 0
         for (i <- 1 to number) {
-            var midoutput = rand.between(1, size+1) 
+            var midoutput = sides(rand.between(0, size))
             result = result + midoutput
         }
         result
     }
 }
+
+
 
 case class Roll(name: String, die: Dice) {
     
@@ -61,25 +63,4 @@ def statistics(main: Roll) = {
   
 
 }
-    // def rand = new Random()
-
-    // class Roll() =
-    //     def initfunct : Unit => List[Int] 
-    //     def functs : List[List[Int] => List[Int]]
-
-    //     def eval() 
-    //         value = initfunct()
-    //         for i <- functs {
-    //             value = i(value)
-    //         }
-    //         value 
-    // end Roll
-
-    // def Dice(number: Int, options : List[Int]) :  
-    //     () => {
-    //         for i <- (1 to number) {
-                
-    //         }
-    //     }
-
-
+   

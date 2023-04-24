@@ -28,7 +28,7 @@ object rollMakerParser extends RegexParsers {
   
   def dice: Parser[Dice] = 
     number ~ "d" ~ number ^^ {
-      case int1 ~ "d" ~ int2 => Dice(int1, int2)
+      case int1 ~ "d" ~ int2 => Dice(int1, int2, List.range(1,int2))
     }
     
 

@@ -78,7 +78,7 @@ By Default, these are not *calculated* statistics, rather they are expirimental.
 [info]           23 | X
 [info]           24 | X
 ```
-The File also does a test roll of each roll inside your file. This is for sanity checking your implementations. 
+The File also does a test roll of each roll inside your file. This is for sanity checking your implementations.
 
 # Other Examples 
 See the attatched files `simpleRoll`, `simpleExpression`, `simpleSubroll` and `simpleCustom`.

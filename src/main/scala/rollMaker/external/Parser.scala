@@ -10,6 +10,8 @@ import rollMakerLib.*
  *
  */
 
+var rolls : Map[String, Roll] = Map()
+
 object rollMakerParser extends RegexParsers {
 
   // for parsing comments
@@ -23,14 +25,20 @@ object rollMakerParser extends RegexParsers {
   def roll: Parser[Roll] =
     "roll" ~ name ~ "{" ~ expression ~ "}" ^^ {
       case _ ~ name ~ _ ~ expression1 ~ _ =>
-        Roll(name, expression1)
+        {
+          val result = Roll(name, expression1)
+          rolls += (name -> result)
+          result
+        }
     }
   
   def expression: Parser[Expression] = 
     dice ~ "+" ~ expression  ^^ {case dice1 ~ _ ~ expression1 => Expression(List(dice1), 0) ++ expression1}
     | number ~ "+" ~ expression ^^ {case int1 ~ _ ~ expression1 => Expression(List(), int1) ++ expression1}
+    | name ~ "+" ~ expression ^^ {case name1 ~ _ ~ expression1 => rolls(name1).die ++ expression1}
     | dice ^^ {case dice1 => Expression(List(dice1), 0)}
     | number ^^ {case int1 => Expression(List(), int1)}
+    | name ^^ {case name1 => rolls(name1).die}
    
 
   

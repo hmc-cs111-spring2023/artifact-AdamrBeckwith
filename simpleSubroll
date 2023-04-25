@@ -1,0 +1,7 @@
+roll double {
+    2d6 + 1
+}
+
+roll main {
+    double + 1d6 + 1
+}

@@ -48,7 +48,7 @@ case class Roll(name: String, die: Expression) {
 
 def evaluate(t: List[Roll]) = {
       for (i <- t ) { 
-        print("Roll Result for " + i.name + " is ")
+        print("Test Roll Result for " + i.name + " is ")
         println(i.die.roll())
 
         if (i.name == "main") { 

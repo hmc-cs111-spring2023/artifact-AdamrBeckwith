@@ -7,7 +7,7 @@ Rollmaker is a External Domain Space Langauge for making dice rolls. It then out
 
 ## How to Run: 
 
-Add yoru file to this directory and then do `sbt run <filename>` and the language will run. 
+Add your file to this directory and then do `sbt` to boot up sbt then do  `run <filename>` and the language will run. 
 
 ## How To Code:
 
@@ -42,11 +42,43 @@ roll alpha {
     2d[0,1,2,3,8] 
 }
 roll main { 
-    Alpha + 1d8
+    alpha + 1d8
 }
 ```
 Which, when run on rollMaker  will out outout the stats about what results the roll results in and its probability. 
 By Default, these are not *calculated* statistics, rather they are expirimental. Your roll is rolled 1000 times, and compiled into a bar chart. The above result becomes: 
+
+```
+[info] Test Roll Result for alpha is 3
+[info] Test Roll Result for main is 18
+[info] got this far Roll Result | Frequency
+[info]              | 
+[info]            1 | X
+[info]            2 | XXXXXX
+[info]            3 | XXXXXXXXX
+[info]            4 | XXXXXXXXXXXXXXX
+[info]            5 | XXXXXXXXXXXXXXXXXXXXXXXXX
+[info]            6 | XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+[info]            7 | XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+[info]            8 | XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+[info]            9 | XXXXXXXXXXXXXXXXXXXXXXXXXXX
+[info]           10 | XXXXXXXXXXXXXXXXXXXXXXXXXXX
+[info]           11 | XXXXXXXXXXXXXXXXXXXXXXXXX
+[info]           12 | XXXXXXXXXXXXXXXXXX
+[info]           13 | XXXXXXXXXXXXXXXXXXXX
+[info]           14 | XXXXXXXXXXXXXXX
+[info]           15 | XXXXXXXXXXXX
+[info]           16 | XXXXXXXXXXX
+[info]           17 | XXXXXXXXXXX
+[info]           18 | XXXXXXXX
+[info]           19 | XXXX
+[info]           20 | 
+[info]           21 | X
+[info]           22 | X
+[info]           23 | X
+[info]           24 | X
+```
+The File also does a test roll of each roll inside your file. This is for sanity checking your implementations. 
 
 # Other Examples 
 See the attatched files `simpleRoll`, `simpleExpression`, `simpleSubroll` and `simpleCustom`.

@@ -1,0 +1,6 @@
+roll alpha { 
+    2d[0,1,2,3,8] 
+}
+roll main { 
+    alpha + 1d8
+}

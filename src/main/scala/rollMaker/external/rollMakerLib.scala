@@ -60,7 +60,6 @@ def evaluate(t: List[Roll]) = {
 def statistics(main: Roll) = {
     val sampleSize = 1000
     val dierollmax = main.die.max()+1
-    print("got this far")
     var results = ListBuffer.fill(dierollmax)(0)
     for (i <- 1 to sampleSize) {
         val rollValue = main.die.roll()

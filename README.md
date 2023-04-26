@@ -51,7 +51,7 @@ By Default, these are not *calculated* statistics, rather they are expirimental.
 ```
 [info] Test Roll Result for alpha is 3
 [info] Test Roll Result for main is 18
-[info] got this far Roll Result | Frequency
+[info]  Roll Result | Frequency
 [info]              | 
 [info]            1 | X
 [info]            2 | XXXXXX

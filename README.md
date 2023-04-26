@@ -39,10 +39,10 @@ You can combined these elements together with the addtion sign `+`. Therefore yo
 
 ```
 roll alpha { 
-    2d[0,1,2,3,8] 
+    2d[0,1,2,3,8] + 1d6
 }
 roll main { 
-    alpha + 1d8
+    alpha + 1d8 + 7
 }
 ```
 Which, when run on rollMaker  will out outout the stats about what results the roll results in and its probability. 
